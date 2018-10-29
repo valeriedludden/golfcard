@@ -1,0 +1,46 @@
+html{
+    height:100%;
+}
+body{
+    margin:0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("fall-golf-hero.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.container{
+    margin-top: 100px;
+    height: 400px;
+    width: 80%;
+    display: flex;
+    border: 1px solid #dadfea;
+    background-color: #fafafa;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+.courseName{
+    background-color: #dadfea;
+    text-align: center;
+}
+.handicap{
+     background: red;
+ }
+
+.par{
+    background: yellow;
+}
+
+.yards{
+    background: orange;
+}
+
+.handicap{
+    background: aqua;
+}
