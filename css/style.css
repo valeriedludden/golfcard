@@ -16,11 +16,12 @@ body{
 
 .container{
     margin-top: 100px;
-    height: 400px;
+    height: auto;
     width: 80%;
     display: flex;
     border: 1px solid #dadfea;
-    background-color: #fafafa;
+    //background-color: #fafafa;
+    //opacity: 0.8;
     border-radius: 5px;
     display: flex;
     flex-direction: column;
@@ -28,13 +29,16 @@ body{
 .courseName{
     background-color: #dadfea;
     text-align: center;
+    opacity: 1.0;
 }
 .handicap{
      background: red;
+    opacity: 1.0;
  }
 
 .par{
     background: yellow;
+    opacity: 1.0;
 }
 
 .yards{
@@ -43,4 +47,8 @@ body{
 
 .handicap{
     background: aqua;
+}
+.players{
+    background-color: #fafafa;
+    opacity: 0.8;
 }
