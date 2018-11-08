@@ -2,6 +2,7 @@
 let courseCollection;
 let numPlayers = 5;
 let numHoles = 18;
+let teeType = pickTee();
 
 (function(){
     loadDoc();
@@ -38,26 +39,55 @@ function loadCourse(courseid){
                 $('.teeSelect').append('<option value="' + i + '">' + teeArray[i].teeType + '</option>')
             }
             buildCard();
+            // loadPar();
+            console.log("The tee type is.." + teeType);
         }
     };
     xhttp.open('GET', 'http://golf-courses-api.herokuapp.com/courses/' + courseid, true);
     xhttp.send();
 }
 
+function pickTee(tee){
+    console.log(tee);
+   return tee;
+}
+
 function buildCard(){
     for (let i = 1; i <= numHoles; i++){
         $('.card').append("<div id='col" + i + "' class='column'>" + i + "</div>")
     }
+    loadPar();
+    // loadYards();
+    // loadHandicap();
     addHoles();
+
 }
 
 function addHoles(){
-    console.log("add holes");
+
     for(let p = 1; p <= numPlayers; p++){
         for(let h = 1; h <= numHoles; h++){
             $('#col' + h).append("<input type='text' class='hole' id='p" + p +"h" + h + "'>");
         }
     }
+
+}
+
+function loadPar(){
+    for(let i = 1; i <= numHoles; i++){
+        let parArray = myCourse.data.holes[i-1].teeBoxes[0];
+        $('#col' + i).append("<div class='par' id='par" + "i" + i + "'>" + parArray.par + "</div>");
+    }
+}
+function loadYards() {
+    for(let i = 1; i <= numHoles; i++){
+        let yardArray = myCourse.data.holes[i-1].teeBoxes[0];
+        $('#col' + i).append("<div class='par' id='par" + "i" + i + "'>" + parArray.par + "</div>");
+    }
+}
+
+function loadHandicap() {
+    
 }
 
 //to add the score
