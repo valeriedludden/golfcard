@@ -2,25 +2,24 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Golf Card</title>
-    <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <title>Title</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <script src="js/golf.js" defer></script>
-    <script src="js/js.js" defer></script>
-    <link href="style.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <div class="courseName">Course Name</div>
-        <div class="yards">Yards from tee</div>
-        <div class="par">par</div>
-        <div class="handicap">Handicap</div>
-        <div class="players">Players</div>
 
-    </div>
+<select class="courseSelect" onchange="loadCourse(this.value)">
+    <option>Select Course</option>
+</select>
+
+<select class="teeSelect">
+
+</select>
+
+<div class="card">
+
+</div>
+
 </body>
 </html>
