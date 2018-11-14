@@ -6,16 +6,52 @@
     display: flex;
     flex-direction: column;
     text-align: center;
+    border: 1px solid #0A1A27;
 }
-.hole{
-    width: 50px;
+
+.column div{
+    height: 30px;
+    width: 30px;
+    border-bottom: 1px solid black;
 }
+/*.column:first-child{*/
+    /*background-color: yellow;*/
+/*}*/
+/*.column:nth-child(2){*/
+    /*background-color: orange;*/
+/*}*/
+/*.column:nth-child(3){*/
+    /*background-color: greenyellow;*/
+/*}*/
+#col0:nth-child(4){
+    height: 40px;
+    background-color: #832539;
+}
+#col0:nth-child(5){
+    height: 40px;
+}
+#col0:nth-child(6){
+    height: 40px;
+}
+#col0:nth-child(7){
+    height: 40px;
+}
+
+#col0 div{
+    width: 100px;
+    height: 30px;
+}
+/*.hole{*/
+    /*width: 30px;*/
+/*}*/
 .card div input{
     width: 30px;
-    height: 30px;
+    height: 28px;
+    margin: 0;
+    /*border-bottom: 1px solid black;*/
 }
 .par{
     width: 30px;
     height: 30px;
-    background-color: aqua;
+    /*background-color: aqua;*/
 }
