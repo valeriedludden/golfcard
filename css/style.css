@@ -14,36 +14,41 @@
     width: 30px;
     border-bottom: 1px solid black;
 }
-/*.column:first-child{*/
-    /*background-color: yellow;*/
-/*}*/
-/*.column:nth-child(2){*/
-    /*background-color: orange;*/
-/*}*/
-/*.column:nth-child(3){*/
-    /*background-color: greenyellow;*/
-/*}*/
-#col0:nth-child(4){
-    height: 40px;
-    background-color: #832539;
+.column div:first-child{
+    background-color: yellow;
 }
-#col0:nth-child(5){
-    height: 40px;
+.column div:nth-child(2){
+    background-color: orange;
 }
-#col0:nth-child(6){
-    height: 40px;
+.column div:nth-child(3){
+    background-color: greenyellow;
 }
-#col0:nth-child(7){
-    height: 40px;
+#col0 div:nth-child(4){
+    height: 33px;
+}
+#col0 div:nth-child(5){
+    height: 33px;
+}
+#col0 div:nth-child(6){
+    height: 33px;
+}
+#col0 div:nth-child(7){
+    height: 33px;
 }
 
 #col0 div{
     width: 100px;
     height: 30px;
 }
-/*.hole{*/
-    /*width: 30px;*/
-/*}*/
+#inScore{
+    width: 40px;
+}
+#outScore{
+    width: 40px;
+}
+#totalScore{
+    width: 40px;
+}
 .card div input{
     width: 30px;
     height: 28px;

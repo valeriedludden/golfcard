@@ -40,13 +40,7 @@ function loadCourse(courseid){
             }
             numPlayers = $(".players").val();
             buildCard();
-            //getTee(tee);
-            //let teeValue = $("#teeChoice").val();
-            loadYards();
-            //console.log("The tee type is.." + teeValue);
-
             console.log("the number of players is " + numPlayers);
-
         }
     };
     xhttp.open('GET', 'http://golf-courses-api.herokuapp.com/courses/' + courseid, true);
@@ -56,7 +50,7 @@ function loadCourse(courseid){
 function buildCard(){
     numPlayers = $(".players").val();
     console.log("build card numPlayers is .." + numPlayers);
-    $('.card').append("<div class='column' id='col0'><div>Hole</div><div>Yards</div><div>Par</div></div>");
+    $('.card').append("<div class='column' id='col0'><div>Hole</div><div>Yards</div><div>Par</div><div>Handicap</div></div>");
     for (let i = 1; i <= numHoles; i++){
         $('.card').append("<div id='col" + i + "' class='column'>" + "<div>" + i + "</div></div>");
     }
@@ -65,9 +59,10 @@ function buildCard(){
         console.log("build card numPlayer is " + p + " baby!");
     }
     let teeValue = $("#teeChoice").val();
-    loadYards();
-    buildParBox();
+    cardBoxes();
     addHoles();
+    buildInScore();
+    buildTotalScore();
 }
 
 function addHoles(){
@@ -77,13 +72,12 @@ function addHoles(){
             $('#col' + h).append("<input type='text' class='hole' id='p" + p +"h" + h + "'>");
         }
     }
-
 }
-function buildParBox(){
+function cardBoxes(){
     for(let i = 1; i <= numHoles; i++){
-        let parArray = myCourse.data.holes[i-1].teeBoxes[0];
-       // $('#col' + i).append("<div class='par' id='par" + "i" + i + "'>" + parArray.par + "</div>");
+        $('#col' + i).append("<div class='yards' id='yards" + i + "'></div>");
         $('#col' + i).append("<div class='par' id='par" + i + "'></div>");
+        $('#col' + i).append("<div class='handicap' id='hand" + i + "'></div>");
     }
 }
 
@@ -92,27 +86,51 @@ function loadPar(){
     for(let i = 1; i <= numHoles; i++){
         let parArray = myCourse.data.holes[i-1].teeBoxes[0];
         $('#par' + i).html(""+ parArray.par+"");
+    }
+}
+function buildOutScore(){
+    $("#col9").append("<div class='column' id='outScore'><div>Out</div></div>");
+    let n = 2;
+    let squaresNeeded = n + Number(numPlayers);
+    for(let i = 0; i < squaresNeeded; i++){
+        $("#outScore").append("<div>value</div>")
+    }
+}
+
+function buildInScore(){
+    $(".card").append("<div class='column' id='inScore'><div>In</div></div>");
+    let n = 2;
+    let squaresNeeded = n + Number(numPlayers);
+    for(let i = 0; i < squaresNeeded; i++){
+        $("#inScore").append("<div>value</div>")
+    }
+}
+function buildTotalScore(){
+    $(".card").append("<div class='column' id='totalScore'><div>Total</div></div>");
+    let n = 2;
+    let squaresNeeded = n + Number(numPlayers);
+    console.log("squaresNeeded = " + squaresNeeded);
+    console.log("numPlayers = " + numPlayers);
+    for(let i = 0; i < squaresNeeded; i++){
+        $("#totalScore").append("<div>value</div>")
+    }
+}
+function loadHandicap(){
+    for(let i = 1; i <= numHoles; i++){
+        let handArray = myCourse.data.holes[i-1].teeBoxes[0];
+        $('#hand' + i).html(""+ handArray.hcp + "");
         //console.log(parArray.par);
     }
-
-}
-function getTee(tee) {
-    let myTee = tee;
-    return myTee;
 }
 
-function loadYards() {
-    let tee = $("#teeChoice").val();
+function loadYards(tee) {
     console.log(" the tee value " + tee);
-    //buildCard();
-
     for(let i = 1; i <= numHoles; i++){
         let yardArray = myCourse.data.holes[i-1].teeBoxes[tee];
-        $('#col' + i).append("<div class='yards' id='yards" + i + "'>" + yardArray.yards + "</div>");
+        $('#yards' + i).html(""+ yardArray.yards +"");
     }
     loadPar();
-
-
+    loadHandicap();
 }
 
 // function loadHandicap() {
