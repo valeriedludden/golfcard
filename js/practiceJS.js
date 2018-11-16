@@ -56,7 +56,6 @@ function buildCard(){
     }
     for(let p = 1; p <= numPlayers; p++){
         $('#col0').append("<div>Player " +  p + "</div>");
-        console.log("build card numPlayer is " + p + " baby!");
     }
     let teeValue = $("#teeChoice").val();
     cardBoxes();
@@ -148,4 +147,9 @@ function loadYards(tee) {
 //     }
 //
 //     return myScore;
+// }
+// to have the tee value to use anywhere, make a global vairable globaltee and use this function
+// function chooseTee(teevalue){
+//     gloabal tee = teevalue;
+//     buildCard();
 // }
