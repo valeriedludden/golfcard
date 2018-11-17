@@ -7,11 +7,13 @@
     flex-direction: column;
     text-align: center;
     border: 1px solid #0A1A27;
+    margin: 0;
+    padding: 0;
 }
 
 .column div{
-    height: 30px;
-    width: 30px;
+    height: 36px;
+    width: auto;
     border-bottom: 1px solid black;
 }
 .column div:first-child{
@@ -28,8 +30,8 @@
 }
 
 #col0 div{
-    width: 100px;
-    height: 30px;
+    width: 106px;
+    height: 36px;
 }
 #col0 input{
     width: 100px;

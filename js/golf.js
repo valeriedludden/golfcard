@@ -84,7 +84,7 @@ function addHoles(){
 
     for(let p = 1; p <= numPlayers; p++){
         for(let h = 1; h <= numHoles; h++){
-            $('#col' + h).append("<input type='text' onchange='checkNumber(this.value, this.id)' class='hole' id='p" + p +"h" + h + "'>");
+            $('#col' + h).append("<input type='number' onchange='checkNumber(this.value, this.id)'  class='hole' id='p" + p +"h" + h + "'>");
         }
     }
 }
@@ -159,6 +159,56 @@ function loadHandicap(){
         $('#hand' + i).html(""+ handArray.hcp + "");
     }
 }
+function addHandicapTotal(){
+    let sumTotal = 0;
+    for(let i = 1; i <= numHoles; i++){
+        let handArray = myCourse.data.holes[i-1].teeBoxes[0];
+
+        sumTotal += handArray.hcp;
+    }
+    $('#total2').html(sumTotal);
+
+    let sumOut = 0;
+    for(let i = 1; i <= 9; i++){
+        let handArray = myCourse.data.holes[i-1].teeBoxes[0];
+
+        sumOut += handArray.hcp;
+    }
+    $('#outHandicapTotal').html(sumOut);
+
+    let sumIn = 0;
+    for(let i = 10; i <= numHoles; i++){
+        let handArray = myCourse.data.holes[i-1].teeBoxes[0];
+
+        sumIn += handArray.hcp;
+    }
+    $('#in2').html(sumIn);
+}
+function addYardTotal(){
+    let sumTotal = 0;
+    for(let i = 1; i <= numHoles; i++){
+        let yardArray = myCourse.data.holes[i-1].teeBoxes[0];
+
+        sumTotal += yardArray.yards;
+    }
+    $('#total0').html(sumTotal);
+
+    let sumOut = 0;
+    for(let i = 1; i <= 9; i++){
+        let yardArray = myCourse.data.holes[i-1].teeBoxes[0];
+
+        sumOut += yardArray.yards;
+    }
+    $('#outYardsTotal').html(sumOut);
+
+    let sumIn = 0;
+    for(let i = 10; i <= numHoles; i++){
+        let yardArray = myCourse.data.holes[i-1].teeBoxes[0];
+
+        sumIn += yardArray.yards;
+    }
+    $('#in0').html(sumIn);
+}
 
 function loadYards(tee) {
     console.log(" the tee value " + tee);
@@ -169,7 +219,8 @@ function loadYards(tee) {
     loadPar();
     loadHandicap();
     addParTotal();
-    //addHandicap();
+    addYardTotal();
+    addHandicapTotal();
 }
 
 function scoreTotal(){
@@ -178,22 +229,16 @@ function scoreTotal(){
     }
 }
 
-// function loadHandicap() {
-//
-// }
-
-//to add the score
-
-// function addScore(myid){
-//     //parse the player number out oft he id, make that p
-//     // need to find a way to tie it to player
-//     for(let i =0; ){
-//         let scoreItem =  $("#p" + p + "h" + i).val();
-//         myScore += scoreItem;
+function addScore(score, id){
+    console.log("add score is working. Value is " + score + " id is " + id);
+//        for(let h = 0; h <=numHoles; h++) {
+//            $(`#p${i}h${h}`).val()
+//         let scoreItem =  $("#p" + p + "h" + h).val();
+// //         myScore += scoreItem;
 //     }
-//
-//     return myScore;
-// }
+}
+
+
 function checkName(name){
     // $(".player").each(function(){
     //     let namePlayer = $(this).html();
@@ -204,6 +249,7 @@ function checkName(name){
     // });
     let pushName;
     let nameArray = [];
+    let count = 0;
     for(let i = 1; i <= numPlayers; i++) {
         pushName = $(`#player${i}`).val();
         if(pushName != ""){
@@ -218,32 +264,28 @@ function checkName(name){
         //     }
         // }
 
-
-            if (name === nameArray[1]) {
-                displayModal();
+            if (nameArray[i + 1] === nameArray[i]) {
+                    displayModal();
+                }
             }
-            else if (name === nameArray[0] || name === nameArray[1]) {
-                displayModal();
-            }
-
-            else if (name === nameArray[0] || name === nameArray[1] || name === nameArray[2]) {
-                displayModal();
-            }
-        }
     }
-function checkNumber(number, id){
-    if(typeof number !='number'){
-       modalId = id;
+function checkNumber(number, id) {
+    if (number <= 0) {
+        modalId = id;
         displayModal();
+        $(`#${modalId}`).val('');
     }
 }
-function displayModal(){
-    $('.numberModal').css('display', 'flex');
-}
 
-function clearModal(){
-    $('.numberModal').css('display', 'none');
-    $(`#${modalId}`).val('');
+    function displayModal() {
+        $('.numberModal').css('display', 'flex');
+    }
+
+    function clearModal() {
+        $('.numberModal').css('display', 'none');
 
 
-}
+
+    }
+
+// oninput='addScore(this.value, this.id)'
