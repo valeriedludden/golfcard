@@ -128,14 +128,54 @@ select{
     width: 100px;
     height: 30px;
 }
-#inScore{
+
+#total3{
     width: 40px;
+    height: 35px;
 }
-#outScore{
+#total4{
     width: 40px;
+    height: 35px;
 }
-#totalScore{
+#total5{
     width: 40px;
+    height: 35px;
+}
+#total6{
+    width: 40px;
+    height: 36px;
+}
+#Out1 {
+    width: 40px;
+    height: 35px;
+}
+#Out2 {
+    width: 40px;
+    height: 35px;
+}
+#Out3 {
+    width: 40px;
+    height: 35px;
+}
+#Out4 {
+    width: 40px;
+    height: 36px;
+}
+#in4{
+    width: 40px;
+    height: 35px;
+}
+#in5{
+    width: 40px;
+    height: 35px;
+}
+#in6{
+    width: 40px;
+    height: 35px;
+}
+#in3{
+    width: 40px;
+    height: 36px;
 }
 .card div input{
     width: 30px;
