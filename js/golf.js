@@ -55,7 +55,7 @@ function buildCard(){
     }
     //builds the player scores depending on how many players
     for(let p = 1; p <= numPlayers; p++){
-        $('#col0').append("<input type='text' onchange='checkName(this.value)' placeholder='Player " + p + "' class='player' id='player" + p +"'>");
+        $('#col0').append("<input type='text' placeholder='Player " + p + "' class='player' id='player" + p +"'>");
     }
     //Insert Out Score
         $('.card').append("<div id='colOut' class='column'>" + "<div>" + 'Out' + "</div></div>");
@@ -252,10 +252,9 @@ function addScore(score, id){
 }
 function hide(){
     $('.begin').css('display', 'none');
+    let displayName = myCourse.data.name;
+    $('.courseName').append(`<div class="name"><span>The course you are playing is</span><div class="display">${displayName}</div></div>`)
 }
-
-
-
 function checkName(name){
     // $(".player").each(function(){
     //     let namePlayer = $(this).html();

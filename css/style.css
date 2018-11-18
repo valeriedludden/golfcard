@@ -32,6 +32,21 @@ body {
 .begin select{
     font-size: 16px;
 }
+.name{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: Roboto;
+}
+span{
+    font-size: 25px;
+    color: #0A1A27;
+}
+.name div{
+    font-size: 40px;
+    color: forestgreen;
+}
 .card{
     display: flex;
 }
@@ -62,16 +77,47 @@ select{
     border-bottom: 1px solid black;
 }
 .column div:first-child{
-    background-color: yellow;
+    background-color: #ff887a;
 }
 .column div:nth-child(2){
-    background-color: orange;
+    background-color: #ffaf67;
 }
 .column div:nth-child(3){
     background-color: greenyellow;
 }
 .column div:nth-child(4){
     background-color: #96BFB6;
+}
+.column div:nth-child(5){
+    background-color: #ffffff;
+}
+.column div:nth-child(6){
+    background-color: #ffffff;
+}
+.column div:nth-child(7){
+    background-color: #ffffff;
+}
+.column div:nth-child(8){
+    background-color: #ffffff;
+}
+.courseName{
+    opacity: 0.6;
+}
+.name{
+    width: 700px;
+    height: 100px;
+    background-color: #fafafa;
+    margin: 20px auto 40px auto;
+    border-radius: 10px;
+}
+#inScore{
+    font-weight: bold;
+}
+#outScore{
+    font-weight: bold;
+}
+#totalScore{
+    font-weight: bold;
 }
 
 #col0 div{

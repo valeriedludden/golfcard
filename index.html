@@ -12,7 +12,7 @@
 <body>
 <div class="container">
     <div class="begin">
-        <div>How many players today?</div>
+        <div class="selectPlayers">How many players today?</div>
             <select class="players">
                 <option>Number of Players</option>
                 <option value="1"> 1 Player</option>
@@ -20,7 +20,7 @@
                 <option value="3"> 3 Players</option>
                 <option value="4"> 4 Players</option>
             </select>
-        <div>What course would you like?</div>
+        <div class="selectCourse">What course would you like?</div>
             <select class="courseSelect" onchange="loadCourse(this.value)">
                 <option>Select Course</option>
             </select>
@@ -28,6 +28,7 @@
             <select class="teeSelect" id="teeChoice" onchange="loadYards(this.value)">
             </select>
     </div>
+    <div class="courseName"></div>
 
     <div class="card"></div>
     <div class="numberModal">
