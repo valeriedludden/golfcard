@@ -1,4 +1,37 @@
+body {
+    background-image: url("../images/golf.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
+.container{
+
+    width: 100%;
+    height: 100%;
+    //background-image: url("../images/fall-golf-hero.png");
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.begin{
+    display: flex;
+    flex-direction: column;
+    margin: 75px auto;
+    width: 300px;
+    height: 300px;
+    justify-content: center;
+    align-items: center;
+    background-color: #fafafa;
+    border-radius: 10px;
+}
+.begin div{
+    font-size: 20px;
+    margin: 20px;
+}
+.begin select{
+    font-size: 16px;
+}
 .card{
     display: flex;
 }
@@ -10,7 +43,19 @@
     margin: 0;
     padding: 0;
 }
-
+div{
+    font-family: 'Roboto', sans-serif;
+}
+input{
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+}
+button{
+    font-family: 'Roboto', sans-serif;
+}
+select{
+    font-family: 'Roboto', sans-serif;
+}
 .column div{
     height: 36px;
     width: auto;

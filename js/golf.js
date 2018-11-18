@@ -14,7 +14,6 @@ function loadDoc() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
             courseCollection = JSON.parse(this.responseText);
-            console.log(courseCollection);
 
             for(let i = 0; i < courseCollection.courses.length; i++){
                 $('.courseSelect').append('<option value="' + courseCollection.courses[i].id + '">'+ courseCollection.courses[i].name +'</option>')
@@ -26,21 +25,17 @@ function loadDoc() {
 }
 
 function loadCourse(courseid){
-    console.log(courseid);
     let xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
         if(this.readyState == 4 && this.status == 200) {
             myCourse = JSON.parse(this.responseText);
-            console.log(myCourse);
 
             let teeArray = myCourse.data.holes[0].teeBoxes;
             for (let i = 0; i < teeArray.length; i++) {
                 $('.teeSelect').append('<option value="' + i + '">' + teeArray[i].teeType + '</option>');
-                console.log(" tee type is... "+ teeArray[i].teeType + " and i is .. " + i);
             }
             numPlayers = $(".players").val();
             buildCard();
-            console.log("the number of players is " + numPlayers);
         }
     };
     xhttp.open('GET', 'http://golf-courses-api.herokuapp.com/courses/' + courseid, true);
@@ -48,8 +43,8 @@ function loadCourse(courseid){
 }
 
 function buildCard(){
+
     numPlayers = $(".players").val();
-    console.log("build card numPlayers is .." + numPlayers);
 
     //Heading columns
     $('.card').append("<div class='column' id='col0'><div>Hole</div><div>Yards</div><div>Par</div><div>Handicap</div></div>");
@@ -65,8 +60,8 @@ function buildCard(){
     //Insert Out Score
         $('.card').append("<div id='colOut' class='column'>" + "<div>" + 'Out' + "</div></div>");
         $('#colOut').append("<div id='outYardsTotal'></div><div id='outParTotal'></div><div id='outHandicapTotal'></div>");
-        for(let o = 0; o < numPlayers; o++){
-            $('#colOut').append("<div class='playerOutTotal' id='Out'"+ o +"></div>");
+        for(let o = 1; o <= numPlayers; o++){
+            $('#colOut').append("<div class='playerOutTotal' id='Out"+ o +"'></div>");
         }
 
     //Builds the last 9 holes
@@ -78,13 +73,14 @@ function buildCard(){
     addHoles();
     buildInScore();
     buildTotalScore();
+
 }
 
 function addHoles(){
 
     for(let p = 1; p <= numPlayers; p++){
         for(let h = 1; h <= numHoles; h++){
-            $('#col' + h).append("<input type='number' onchange='checkNumber(this.value, this.id)'  class='hole' id='p" + p +"h" + h + "'>");
+            $('#col' + h).append("<input type='text' onchange='addScore(this.value, this.id)'  class='hole' id='p" + p +"h" + h + "'>");
         }
     }
 }
@@ -103,20 +99,12 @@ function loadPar(){
         $('#par' + i).html(""+ parArray.par+"");
     }
 }
-function buildOutScore(){
-    $("#col9").append("<div class='column' id='outScore'><div>Out</div></div>");
-    let n = 2;
-    let squaresNeeded = n + Number(numPlayers);
-    for(let i = 0; i < squaresNeeded; i++){
-        $("#outScore").append("<div></div>")
-    }
-}
 
 function buildInScore(){
     $(".card").append("<div class='column' id='inScore'><div>In</div></div>");
     let n = 2;
     let squaresNeeded = n + Number(numPlayers);
-    for(let i = 0; i < squaresNeeded; i++){
+    for(let i = 0; i <= squaresNeeded; i++){
         $("#inScore").append(`<div id='in${i}'></div>`)
     }
 }
@@ -211,32 +199,61 @@ function addYardTotal(){
 }
 
 function loadYards(tee) {
-    console.log(" the tee value " + tee);
     for(let i = 1; i <= numHoles; i++){
         let yardArray = myCourse.data.holes[i-1].teeBoxes[tee];
         $('#yards' + i).html(""+ yardArray.yards +"");
     }
+
     loadPar();
     loadHandicap();
     addParTotal();
     addYardTotal();
     addHandicapTotal();
+    hide();
+
 }
 
-function scoreTotal(){
-    for(let h = 0; h < numHoles; i++){
-        $('')
-    }
+function getSum(total, num) {
+    return total + num;
 }
-
 function addScore(score, id){
-    console.log("add score is working. Value is " + score + " id is " + id);
-//        for(let h = 0; h <=numHoles; h++) {
-//            $(`#p${i}h${h}`).val()
-//         let scoreItem =  $("#p" + p + "h" + h).val();
-// //         myScore += scoreItem;
-//     }
+
+    let holeScore = score;
+    let playerString = id;
+    let pId = Number(playerString.slice(1,2));
+    let scoreArray1 = [];
+    let scoreArray2 = [];
+    let scoreArray3 = [];
+    //Total Score
+    for (let i = 1; i <= numHoles; i++){
+         let value = Number($(`#p${pId}h${i}`).val());
+        let sum;
+        scoreArray1.push(value);
+        sum = scoreArray1.reduce(getSum);
+        let idVar = pId + 2;
+        $(`#total${idVar}`).html(sum);
+    }//In Score
+    for (let i = 10; i <= numHoles; i++){
+        let value = Number($(`#p${pId}h${i}`).val());
+        let sum;
+        scoreArray2.push(value);
+        sum = scoreArray2.reduce(getSum);
+        let idVar = pId + 2;
+        $(`#in${idVar}`).html(sum);
+    }
+        //Out Score
+        for (let i = 1; i <= 9; i++){
+            let value = Number($(`#p${pId}h${i}`).val());
+            let sum;
+            scoreArray3.push(value);
+            sum = scoreArray3.reduce(getSum);
+            $(`#Out${pId}`).html(sum);
+        }
 }
+function hide(){
+    $('.begin').css('display', 'none');
+}
+
 
 
 function checkName(name){
@@ -284,8 +301,4 @@ function checkNumber(number, id) {
     function clearModal() {
         $('.numberModal').css('display', 'none');
 
-
-
     }
-
-// oninput='addScore(this.value, this.id)'

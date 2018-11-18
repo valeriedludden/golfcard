@@ -2,40 +2,40 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Golf Score Card</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="js/golf.js" defer></script>
     <!--<script src="js/practiceJS.js" defer></script>-->
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-<div>
-    <div>How many players today?</div>
-    <select class="players">
-        <option>Number of Players</option>
-        <option value="1"> 1 Player</option>
-        <option value="2"> 2 Players</option>
-        <option value="3"> 3 Players</option>
-        <option value="4"> 4 Players</option>
-    </select>
-    <div>What course would you like?</div>
-    <select class="courseSelect" onchange="loadCourse(this.value)">
-        <option>Select Course</option>
-    </select>
-    <div>What tee will you use?</div>
-    <select class="teeSelect" id="teeChoice" onchange="loadYards(this.value)">
-
-    </select>
-</div>
-
-<div class="card">
-
-</div>
-<div class="numberModal">
-    <div class="numberMessage">
-      Must enter a positive number.
+<div class="container">
+    <div class="begin">
+        <div>How many players today?</div>
+            <select class="players">
+                <option>Number of Players</option>
+                <option value="1"> 1 Player</option>
+                <option value="2"> 2 Players</option>
+                <option value="3"> 3 Players</option>
+                <option value="4"> 4 Players</option>
+            </select>
+        <div>What course would you like?</div>
+            <select class="courseSelect" onchange="loadCourse(this.value)">
+                <option>Select Course</option>
+            </select>
+        <div>What tee will you use?</div>
+            <select class="teeSelect" id="teeChoice" onchange="loadYards(this.value)">
+            </select>
     </div>
-    <button class="numberButton" onclick="clearModal()">Got it!</button>
+
+    <div class="card"></div>
+    <div class="numberModal">
+        <div class="numberMessage">
+          Must enter a positive number.
+        </div>
+        <button class="numberButton" onclick="clearModal()">Got it!</button>
+    </div>
 </div>
 
 </body>
