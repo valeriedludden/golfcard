@@ -20,7 +20,7 @@ function loadDoc() {
             }
         }
     };
-    xhttp.open('GET', 'http://golf-courses-api.herokuapp.com/courses', true);
+    xhttp.open('GET', 'https://golf-courses-api.herokuapp.com/courses', true);
     xhttp.send();
 }
 
@@ -38,7 +38,7 @@ function loadCourse(courseid){
             buildCard();
         }
     };
-    xhttp.open('GET', 'http://golf-courses-api.herokuapp.com/courses/' + courseid, true);
+    xhttp.open('GET', 'https://golf-courses-api.herokuapp.com/courses/' + courseid, true);
     xhttp.send();
 }
 
@@ -232,6 +232,7 @@ function addScore(score, id){
         sum = scoreArray1.reduce(getSum);
         let idVar = pId + 2;
         $(`#total${idVar}`).html(sum);
+
     }//In Score
     for (let i = 10; i <= numHoles; i++){
         let value = Number($(`#p${pId}h${i}`).val());
@@ -240,7 +241,7 @@ function addScore(score, id){
         sum = scoreArray2.reduce(getSum);
         let idVar = pId + 2;
         $(`#in${idVar}`).html(sum);
-    }
+        }
         //Out Score
         for (let i = 1; i <= 9; i++){
             let value = Number($(`#p${pId}h${i}`).val());
@@ -249,11 +250,26 @@ function addScore(score, id){
             sum = scoreArray3.reduce(getSum);
             $(`#Out${pId}`).html(sum);
         }
+    let endHole = $(`#p${pId}h18`).val();
+    if (endHole != ""){
+        scoreResult(pId);
+    }
+
 }
 function hide(){
     $('.begin').css('display', 'none');
     let displayName = myCourse.data.name;
     $('.courseName').append(`<div class="name"><span>The course you are playing is</span><div class="display">${displayName}</div></div>`)
+}
+function scoreResult(pid){
+    let playerId = pid;
+    let place = Number(playerId) + 2;
+    let finalScore = $(`#total${place}.val()`);
+    console.log(finalScore);
+    let parVal = $(`#total1`).val();
+    let final = Number(finalScore) - Number(parVal);
+    console.log(" final is " + final);
+    $(".result").append(`<div>Your final score is ${finalScore} . That is ${final} from Par </div><div></div>`);
 }
 function checkName(name){
     // $(".player").each(function(){
@@ -301,3 +317,6 @@ function checkNumber(number, id) {
         $('.numberModal').css('display', 'none');
 
     }
+
+
+
